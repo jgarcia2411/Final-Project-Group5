@@ -7,6 +7,7 @@ from sklearn.metrics import f1_score, cohen_kappa_score, accuracy_score, matthew
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras import datasets, layers, models, optimizers
 from tf_explain.callbacks.grad_cam import GradCAM
+import sklearn
 
 # ------------------------------------------------------------------------------------------------------------------
 
@@ -192,7 +193,7 @@ def model_definition():
 
     model.add(layers.Dense(OUTPUTS_a, activation='softmax'))  # final layer , outputs_a is the number of targets
 
-    model.compile(optimizers.Adam(0.001), loss='categorical_crossentropy', metrics=['accuracy'])
+    model.compile(optimizers.Adam(0.0001), loss='categorical_crossentropy', metrics=['accuracy'])
 
     save_model(model)  # print Summary
     return model
@@ -225,6 +226,8 @@ def predict_func(test_ds):
     xres = [tf.argmax(f).numpy() for f in res]
     xdf_dset['results'] = xres
     xdf_dset.to_excel('results_{}.xlsx'.format(NICKNAME), index=False)
+
+    return xres
 
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -340,20 +343,23 @@ if __name__ == "__main__":
     xdf_dset = xdf_data[xdf_data["split"] == 'test'].copy()
 
     test_ds = read_data(OUTPUTS_a)
-    predict_func(test_ds)
+    pred = np.array(predict_func(test_ds))
 
     ## Metrics Function over the result of the test dataset
     list_of_metrics = ['f1_macro', 'acc']
     metrics_func(list_of_metrics)
 
-    img = tf.keras.preprocessing.image.load_img(DATA_DIR+'1000.jpg', target_size=(256, 256))
+    print(sklearn.metrics.confusion_matrix(xdf_dset['target'], pred))
+    print(sklearn.metrics.classification_report(xdf_dset['target'], pred, target_names=['Counterfeit', 'Real', 'Invalid Input']))
+
+    img = tf.keras.preprocessing.image.load_img(DATA_DIR+'23.JPG', target_size=(256, 256))
     img = tf.keras.preprocessing.image.img_to_array(img)
     data = ([img], None)
 
     final_model = tf.keras.models.load_model('model_{}.h5'.format(NICKNAME))
 
     explainer = GradCAM()
-    grid = explainer.explain(data, final_model, class_index=2)
+    grid = explainer.explain(data, final_model, class_index=0)
 
     explainer.save(grid, ".", "grad_cam.png")
 
