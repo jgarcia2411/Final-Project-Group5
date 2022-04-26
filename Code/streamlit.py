@@ -35,8 +35,9 @@ if image_upload is not None:
     #rezised = cv2.resize(cv2_img, (256,256))
     pil_img = tf.keras.preprocessing.image.array_to_img(cv2_img)
     tensor_img = tf.image.resize(pil_img, size=(256,256))
+    
 
-    st.image(cv2_img, channels="RGB")
+    st.image(cv2_img, channels="RGB") 
 
 if len(option) > 0:
     tensor_img = tf.keras.utils.load_img(TEST_DIR+'/'+option[0], target_size = (256,256))
