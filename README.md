@@ -1,14 +1,14 @@
 # Final-Project-Group5
 
-**- Code**
+**- Code** 
 
     main.py -> training model
     
     model_Pokemon.h5 -> best model
+    
     streamlit.py -> model deployment
     
-    test_images
-    
+    test_images (sub-folder) 
       .JPG images used in streamlit.py script for deployment purposes
 
 **- Final-Group-Presentation**
