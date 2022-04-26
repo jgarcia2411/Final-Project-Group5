@@ -1,0 +1,41 @@
+Model: "sequential_3"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d_12 (Conv2D)          (None, 254, 254, 16)      448       
+                                                                 
+ average_pooling2d_12 (Avera  (None, 127, 127, 16)     0         
+ gePooling2D)                                                    
+                                                                 
+ dropout_12 (Dropout)        (None, 127, 127, 16)      0         
+                                                                 
+ conv2d_13 (Conv2D)          (None, 125, 125, 32)      4640      
+                                                                 
+ average_pooling2d_13 (Avera  (None, 62, 62, 32)       0         
+ gePooling2D)                                                    
+                                                                 
+ dropout_13 (Dropout)        (None, 62, 62, 32)        0         
+                                                                 
+ conv2d_14 (Conv2D)          (None, 60, 60, 64)        18496     
+                                                                 
+ average_pooling2d_14 (Avera  (None, 30, 30, 64)       0         
+ gePooling2D)                                                    
+                                                                 
+ dropout_14 (Dropout)        (None, 30, 30, 64)        0         
+                                                                 
+ conv2d_15 (Conv2D)          (None, 28, 28, 64)        36928     
+                                                                 
+ average_pooling2d_15 (Avera  (None, 14, 14, 64)       0         
+ gePooling2D)                                                    
+                                                                 
+ dropout_15 (Dropout)        (None, 14, 14, 64)        0         
+                                                                 
+ flatten_3 (Flatten)         (None, 12544)             0         
+                                                                 
+ dense_3 (Dense)             (None, 3)                 37635     
+                                                                 
+=================================================================
+Total params: 98,147
+Trainable params: 98,147
+Non-trainable params: 0
+_________________________________________________________________

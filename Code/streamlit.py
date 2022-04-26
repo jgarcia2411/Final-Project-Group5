@@ -46,7 +46,7 @@ if len(option) > 0:
 
 #Load the model and ready to use
 labels = {0:'Fake', 1:'Real', 2:'Not valid input'}
-model = tf.keras.models.load_model('model_Pokemon.h5')
+model = tf.keras.models.load_model(OR_PATH+'/Code/model_Pokemon.h5')
 generate_pred = st.button("Generate Prediction")
 if generate_pred:
     prediction = model.predict(tf.expand_dims(tensor_img,0)).argmax()
