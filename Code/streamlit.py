@@ -24,7 +24,7 @@ st.write('The goal of this project is to identify genuine Pokémon trading cards
 st.write('In this demo, users should upload an JPG image or select one from menu:')
 
 #IMG_SIZE = 256, cv2 read the image
-image_upload = st.file_uploader("Choos a image file", type='jpg')
+image_upload = st.file_uploader("Choose an image file", type='jpg')
 
 option = st.multiselect("...or select an image:", photos)
 
