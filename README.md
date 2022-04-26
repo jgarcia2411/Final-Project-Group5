@@ -2,10 +2,16 @@
 
 **- Code** 
 
-    main.py -> training model
+    Code
+        main.py -> training model
+        model_Pokemon.h5 -> best model
+        results_Pokemon.xlsx
+        summary_Pokemon.txt
     
-    model_Pokemon.h5 -> best model
-    
+    Data
+        .JPG images used in main.py script
+
+
     streamlit.py -> model deployment
     
     test_images (sub-folder) 
